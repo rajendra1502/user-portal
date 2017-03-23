@@ -26,23 +26,21 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', '
         };
         
         // for non authenticated routings
-            var notLoggedIn = function ($location, $q, $rootScope, state) {
-                console.info($rootScope.loggedInUser);
+            var notLoggedIn = function ($location, $q, $rootScope) {
+                console.info('test');
                 if ($rootScope.loggedInUser) {
-                    $state.go('/dashboard');
+                    $location.path('/dashboard');
                 } else {
                    
                 }
-
-
-            };
+                };
             
         $stateProvider
         .state('login', {
                     url: '/',
                     templateUrl: 'views/login.html',
                     controller : 'authController',
-//                    resolve: {loggedIn: notLoggedIn} 
+                   resolve: {loggedIn: notLoggedIn} 
                 })
         .state('dashboard', {
                     templateUrl: 'views/dashboard.html',
@@ -54,6 +52,7 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', '
             $rootScope.allowedURLtoPass = false;
             console.info('Application run');
               $rootScope.$on("$stateChangeStart", function (event, next, current) {
+                console.info('stateChangeStart');  
                 if (next.routeType == 'admin') {
                     $rootScope.isAdmin = true;
                 }
@@ -61,8 +60,7 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', '
 
             });
             $rootScope.$on("$stateChangeSuccess", function (event, next, current, $stateParams) {
-
-
+              console.info('$stateChangeSuccess');    
             });
 
         })
