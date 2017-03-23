@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userPortalApp" ng-controller="globalController">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <title>User Portal</title>
+ <link href="css/style.css" rel="stylesheet">
+ <script src="vendor/jquery/jquery.min.js"></script>
+ <script src="vendor/baasbox/baasbox.js"></script> 
+ <script src="scripts/constant.js"></script>  
+ 
+ <script src="vendor/angular/angular-main.js"></script>
+ <script src="vendor/angular-route/angular-ui-route.js"></script>
+ <script src="vendor/angular-resource/resource.js"></script>
+ <script src="scripts/app.js"></script> 
+ <script src="scripts/controllers/globalController.js"></script> 
+ <script src="scripts/controllers/authController.js"></script> 
+ <script src="scripts/directives/directives.js"></script> 
+ <script src="scripts/services/service.js"></script> 
+ 
+ 
+</head>
+ <body id="backgroundImage">
+ <ng-include src="'views/inc/header.html'"> </ng-include>  
+<div class="container fill">    
+        <div ui-view></div>
+</div>
+<ng-include src="'views/inc/footer.html'"> </ng-include>     
+</body> 
+</html>
