@@ -9,6 +9,7 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
   if($scope.signin.$valid){
    baasboxAPIservice.checkAuth($scope.formData.email, $scope.formData.password).then(function (response) {
     console.info('login success', response); 
+    localStorage.setItem("logged_in_status", true);
     $rootScope.loggedInUser = true;
     $location.path('/dashboard');  
    })
@@ -21,7 +22,7 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
   $scope.userSignUp = function(){
    if($scope.signup.$valid){
        baasboxAPIservice.signUp($scope.formData.email, $scope.formData.spassword, $scope.formData.userName).then(function(response){
-        console.info(response); 
+        localStorage.setItem("logged_in_status", true);
         $rootScope.loggedInUser = true;
         $location.path('/dashboard');
        })

@@ -18,7 +18,7 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', '
         var onlyLoggedIn = function ($location, $q, $rootScope,$state) {
         console.info('Logged in status :: ' + $rootScope.loggedInUser);
             if ($rootScope.loggedInUser ) {
-              
+              console.info($rootScope.loggedInUser)  
             } else {
                 $state.go('home');
             }
@@ -26,10 +26,10 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', '
         };
         
         // for non authenticated routings
-            var notLoggedIn = function ($location, $q, $rootScope) {
+            var notLoggedIn = function ($location, $q, $rootScope, state) {
                 console.info($rootScope.loggedInUser);
                 if ($rootScope.loggedInUser) {
-                    $state.go('dashboard');
+                    $state.go('/dashboard');
                 } else {
                    
                 }
@@ -42,7 +42,7 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', '
                     url: '/',
                     templateUrl: 'views/login.html',
                     controller : 'authController',
-                    resolve: {loggedIn: notLoggedIn} 
+//                    resolve: {loggedIn: notLoggedIn} 
                 })
         .state('dashboard', {
                     templateUrl: 'views/dashboard.html',
@@ -51,12 +51,9 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', '
                 })        
     }) 
     .run(function ($rootScope, $location, $http, $stateParams) {            // Init callback function 
-            $rootScope.languageGlobalArray = [];
             $rootScope.allowedURLtoPass = false;
             console.info('Application run');
-
-
-            $rootScope.$on("$stateChangeStart", function (event, next, current) {
+              $rootScope.$on("$stateChangeStart", function (event, next, current) {
                 if (next.routeType == 'admin') {
                     $rootScope.isAdmin = true;
                 }

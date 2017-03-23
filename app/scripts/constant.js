@@ -5,3 +5,5 @@ var appCode = "2437596329457";
 var BASSBOX_COOKIE = "baasbox-cookie";
 BaasBox.setEndPoint(BASSBOX_HOST);    // DB URL
 BaasBox.appcode = appCode;            // App Code
+
+var LOCAL_STORAGE_LOGIN_STATUS = localStorage.getItem("logged_in_status") ? localStorage.getItem("logged_in_status") : null;
