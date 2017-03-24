@@ -21,7 +21,7 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
         this.signUp = function(email, pass, name){
           var deferred = $q.defer();
           console.info(email, pass, name);
-            BaasBox.signup(email, pass, {"visibleByTheUser": {"email": email, "full_name": name}})
+            BaasBox.signup(email, pass, {"visibleByTheUser": {"email": email, "full_name": name, "authKey": 'x890sdf89dfasjhjk21#er'}})
                     .done(function (result) {
                         return deferred.resolve(result);
                     })
@@ -46,5 +46,19 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
                     })
             return deferred.promise;
         }
+        
+        // Check user auth
+        this.checkApiKey = function (key) {
+            var deferred = $q.defer();
+            BaasBox.callPlugin('streetview.user?key=x890sdf89dfasjhjk21#er', 'get')
+                    .done(function (result) {
+                        return deferred.resolve(result);
+                    })
+                    .fail(function (error) {
+                        return deferred.resolve(error);
+                    })
+            return deferred.promise;
+        }
+        
       return this;  
     }]);       

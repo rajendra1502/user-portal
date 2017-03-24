@@ -31,5 +31,11 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
       console.info('not valid'); 
    }   
   }
+ 
+ $scope.CheckApiKey = function(){
+    baasboxAPIservice.checkApiKey().then(function(response){
+       console.info('dd',response);
+       })
+ }   
     
 });
