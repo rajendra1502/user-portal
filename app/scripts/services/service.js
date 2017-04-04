@@ -18,10 +18,10 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
             }
         }
         
-        this.signUp = function(email, pass, name){
+        this.signUp = function(email, pass, name, key){
           var deferred = $q.defer();
           console.info(email, pass, name);
-            BaasBox.signup(email, pass, {"visibleByTheUser": {"email": email, "full_name": name, "authKey": 'x890sdf89dfasjhjk21#er'}})
+            BaasBox.signup(email, pass, {"visibleByTheUser": {"email": email, "full_name": name}, "visibleByAnonymousUsers": {"authKey": key}})
                     .done(function (result) {
                         return deferred.resolve(result);
                     })
@@ -53,6 +53,17 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
             BaasBox.callPlugin('streetview.user?key=x890sdf89dfasjhjk21#er', 'get')
                     .done(function (result) {
                         return deferred.resolve(result);
+                    })
+                    .fail(function (error) {
+                        return deferred.resolve(error);
+                    })
+            return deferred.promise;
+        }
+        this.removeKey = function(dataObj){
+          var deferred = $q.defer();
+            BaasBox.callPlugin('streetview.user', 'put', dataObj)
+                    .done(function (result) {
+                        return deferred.resolve(dataObj);
                     })
                     .fail(function (error) {
                         return deferred.resolve(error);

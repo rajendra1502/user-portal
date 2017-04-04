@@ -9,7 +9,7 @@
  define routing if needed.
  */
 
-var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', 'baasboxAPIservice'])
+var userPortalApp = angular.module('userPortalApp', ['ui.router', 'ui.bootstrap','ngResource', 'baasboxAPIservice'])
     .constant('version', 'v1.0.0')
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
@@ -46,18 +46,24 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router','ngResource', '
                     templateUrl: 'views/dashboard.html',
                     url: '/dashboard',
                     resolve: {loggedIn: onlyLoggedIn}    
-                })        
+                }) 
+        .state('mypoi', {
+                    templateUrl: 'views/mypoi.html',
+                    url: '/poi',
+                    resolve: {loggedIn: onlyLoggedIn}    
+                }) 
+        .state('feature', {
+                    templateUrl: 'views/feature.html',
+                    url: '/feature',
+                    controller : 'featureController',
+                    resolve: {loggedIn: onlyLoggedIn}    
+                })         
     }) 
     .run(function ($rootScope, $location, $http, $stateParams) {            // Init callback function 
             $rootScope.allowedURLtoPass = false;
             console.info('Application run');
               $rootScope.$on("$stateChangeStart", function (event, next, current) {
                 console.info('stateChangeStart');  
-                if (next.routeType == 'admin') {
-                    $rootScope.isAdmin = true;
-                }
-
-
             });
             $rootScope.$on("$stateChangeSuccess", function (event, next, current, $stateParams) {
               console.info('$stateChangeSuccess');    
