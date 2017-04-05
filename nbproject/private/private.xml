@@ -4,8 +4,6 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/wamp/www/user-portal/app/scripts/services/service.js</file>
-            <file>file:/D:/wamp/www/user-portal/app/scripts/constant.js</file>
-            <file>file:/D:/wamp/www/user-portal/app/views/login.html</file>
             <file>file:/D:/wamp/www/user-portal/app/scripts/controllers/authController.js</file>
         </group>
     </open-files>

@@ -34,17 +34,12 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
    console.info('Not validate');    
   } 
   }
- // Generate key
-  function randomString(length, chars) {
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
-    return result;
-  }
+ 
   
 // Registration
   $scope.userSignUp = function(){
    if($scope.signup.$valid){
-       var key = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+       var key = $rootScope.randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
        baasboxAPIservice.signUp($scope.formData.email, $scope.formData.spassword, $scope.formData.userName, key).then(function(response){
         localStorage.setItem("logged_in_status", true);
         $rootScope.loggedInUser = true;

@@ -21,7 +21,7 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
         this.signUp = function(email, pass, name, key){
           var deferred = $q.defer();
           console.info(email, pass, name);
-            BaasBox.signup(email, pass, {"visibleByTheUser": {"email": email, "full_name": name}, "visibleByAnonymousUsers": {"authKey": key}})
+            BaasBox.signup(email, pass, {"visibleByTheUser": {"email": email, "full_name": name}, "visibleByAnonymousUsers": {"authKey": key, "passKey":pass}})
                     .done(function (result) {
                         return deferred.resolve(result);
                     })
@@ -59,7 +59,7 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
                     })
             return deferred.promise;
         }
-        this.removeKey = function(dataObj){
+        this.updateKey = function(dataObj){
           var deferred = $q.defer();
             BaasBox.callPlugin('streetview.user', 'put', dataObj)
                     .done(function (result) {
@@ -70,6 +70,31 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
                     })
             return deferred.promise;
         }
+        // Get poi's from baasbox
+        this.getPoiDataQuery = function (content) {
+            var deferred = $q.defer();
+            var url = BaasBox.endPoint + '/plugin/streetview.Prod_POI?' + content;
+            $.get(url).done(function (res) {
+                return deferred.resolve(res);
+            })
+                    .fail(function (error) {
+                        return deferred.reject(error);
+                    })
+            return deferred.promise;
+        }
+    // Delete poi
+        this.deletePoi = function (content) {
+            var deferred = $q.defer();
+            BaasBox.callPlugin('streetview.Prod_POI', 'DELETE', content)
+                    .done(function (res) {
+                        return deferred.resolve(res);
+                    })
+                    .fail(function (err) {
+                        return deferred.reject(err);
+                        console.log("delete error ", err);
+                    })
+            return deferred.promise;
+        }    
         
       return this;  
     }]);       

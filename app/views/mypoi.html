@@ -11,100 +11,16 @@
 						<th  class="col-xs-3">Actions</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody ng-init="userPoi();">
 					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3">
+						<td class="col-xs-3">John</td><td class="col-xs-3">	{{poi.poiName}}</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3">
 							<ul class="action_wrap">
-								<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-								<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
+								<li><a href ng-click="editPoi($index, poi.id)"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
+								<li><a href ng-click="deletePoi($index, poi.id)"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
 							</ul>
 						</td>
 					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-						
-					</tr> 
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr> 
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr> 
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr> 
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	Doe</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3"> <ul class="action_wrap">
-							<li><a href="#"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-							<li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-						</ul></td>
-					</tr>
+				
 				</tbody>
 			</table>
 			

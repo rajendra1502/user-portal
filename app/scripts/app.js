@@ -52,6 +52,11 @@ var userPortalApp = angular.module('userPortalApp', ['ui.router', 'ui.bootstrap'
                     url: '/poi',
                     resolve: {loggedIn: onlyLoggedIn}    
                 }) 
+         .state('editpoi', {
+                    templateUrl: 'views/editpoi.html',
+                    url: '/editpoi',
+                    resolve: {loggedIn: onlyLoggedIn}    
+                })        
         .state('feature', {
                     templateUrl: 'views/feature.html',
                     url: '/feature',
