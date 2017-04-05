@@ -1,19 +1,22 @@
 <div class=" toppad" >
 	<div class="col-md-2"></div>
 	<div class="col-md-10">
-		<div class="table_wrapper">
+		<div class="table_wrapper" ng-init="userPoi();">
 			<table class="table table-fixed  table-bordered table-striped">
 				<thead>
 					<tr>
-						<th  class="col-xs-3">Firstname</th>
-						<th  class="col-xs-3">Lastname</th>
-						<th  class="col-xs-3">Email</th>
+						<th  class="col-xs-3">POi Name</th>
+						<th  class="col-xs-3">Lat</th>
+						<th  class="col-xs-3">Lng</th>
 						<th  class="col-xs-3">Actions</th>
 					</tr>
 				</thead>
-				<tbody ng-init="userPoi();">
-					<tr>
-						<td class="col-xs-3">John</td><td class="col-xs-3">	{{poi.poiName}}</td><td class="col-xs-3">john@example.com</td><td class="col-xs-3">
+                                
+                                <tbody>
+					<tr ng-repeat="poi in userPoiList">
+						<td class="col-xs-3">{{poi.poiName}}</td>
+                                                <td class="col-xs-3">{{poi.poiLat}}</td>
+                                                <td class="col-xs-3">{{poi.poiLng}}</td><td class="col-xs-3">
 							<ul class="action_wrap">
 								<li><a href ng-click="editPoi($index, poi.id)"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
 								<li><a href ng-click="deletePoi($index, poi.id)"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
