@@ -9,9 +9,8 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
   $scope.userSignIn = function(){
   if($scope.signin.$valid){
    baasboxAPIservice.checkAuth($scope.formData.email, $scope.formData.password).then(function (response) {
-    
+    console.info('resp',response);   
     if(response.http_code !== 401){
-    console.info('resp',response);    
     localStorage.setItem("logged_in_status", true);
     $rootScope.loggedInUser = true;
     $rootScope.userEmail = response.username;

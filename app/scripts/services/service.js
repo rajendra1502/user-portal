@@ -35,15 +35,14 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
         // Check user auth
         this.checkAuth = function (email, pass) {
             var deferred = $q.defer();
-
             var login = BaasBox.login(email, pass);
-
             login.done(function (user) {
+                console.info('user',user)
                 return deferred.resolve(user);
             })
-                    .fail(function (err) {
-                        return deferred.resolve(JSON.parse(err.responseText));
-                    })
+            .fail(function (err) {
+             return deferred.resolve(JSON.parse(err.responseText));
+            })
             return deferred.promise;
         }
         

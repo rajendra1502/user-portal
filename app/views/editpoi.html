@@ -1,28 +1,35 @@
 <div class="toppad" >
 	<div class="content_wrap_area">
-		<form class="form-horizontal edit_poi" role="form">
+		<form class="form-horizontal edit_poi" name="updateFormPoi" role="form" ng-submit="updatePoi();" novalidate>
                 <h2>Edit Poi</h2>
                 <div class="form-group">
-                    <label for="poiName" class="col-sm-3 control-label">Poi Name</label>
+                    <label for="poiName" class="col-sm-3 control-label">Poi Name (English) </label>
                     <div class="col-sm-9">
-                        <input type="text" id="firstName" placeholder="poiName" class="form-control" autofocus>
+                        <input type="text" name="firstName" placeholder="poiName" ng-model="editPoiData.poiName" class="form-control" required>
+                        <p><span ng-show="showMsg && updatepoi.firstName.$error.required">Enter Poi name</span></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="poiName" class="col-sm-3 control-label">Poi Name (Arabic)</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="firstName" placeholder="poiName" ng-model="editPoiData.poiArabicName" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-3 control-label">Poi Email</label>
                     <div class="col-sm-9">
-                        <input type="email" id="email" placeholder="Email" class="form-control">
+                        <input type="email" id="email" placeholder="Email"  ng-model="editPoiData.poiEmail"class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="col-sm-3 control-label">Phone</label>
                     <div class="col-sm-9">
-                        <input type="text" id="phone" placeholder="Phone" class="form-control">
+                        <input type="text" id="phone" placeholder="Phone" ng-model="editPoiData.poiPhone" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        <button type="submit" class="btn btn-primary btn-block">Update</button>
                     </div>
                 </div>
             </form> <!-- /form -->

@@ -1,5 +1,7 @@
 userPortalApp.controller('globalController', ['$scope', '$location', 'baasboxAPIservice', '$q', '$rootScope','$state', '$stateParams', function ($scope, $location, baasboxAPIservice, $q, $rootScope, $state, $stateParams) {
+  
   $scope.userPoiList = [];
+  $scope.updateFormPoi;
   
   if (LOCAL_STORAGE_LOGIN_STATUS){
     $rootScope.loggedInUser = true; 
@@ -100,8 +102,10 @@ $scope.logout = function () {
     }           
  }
  $scope.editPoi = function(index, poiId){
-    console.info($scope.userPoiList[index]); 
+    $scope.editPoiData = angular.copy($scope.userPoiList[index]);
+    console.info($scope.editPoiData);
     $state.go('editpoi');
     //alert(poiId+'-'+index);  
  }
+ 
 }]);
