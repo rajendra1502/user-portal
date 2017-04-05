@@ -443,7 +443,7 @@ body .row{
 }
 .table_wrapper table{color:#000;}
 .table-fixed thead {
-  width: 98.6%;
+  width: 100%;
     background-color: #525252;
     overflow: auto;
   
@@ -481,6 +481,11 @@ body .row{
     margin: 0 auto;
     padding-left: 325px;
 		}
+		.edit_poi{    color: #fff;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.58);
+    padding: 20px 70px 25px 5px;
+    box-shadow: 0px 0px 33px 0px #484747;}
 @media (max-width: 1024px) {
 	.nav-side-menu{height:100%;}
 	.table-fixed tbody {
