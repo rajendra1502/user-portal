@@ -15,7 +15,7 @@ a{color:inherit;text-decoration:none}
     max-width:525px;
     min-height:670px;
     position:relative;
-    background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+    /* background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center; */
     box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .login-html{
@@ -23,7 +23,8 @@ a{color:inherit;text-decoration:none}
     height:100%;
     position:absolute;
     padding:90px 70px 50px 70px;
-    background:rgba(40,57,101,.9);
+        background: rgba(0, 0, 0, 0.61);
+    color: #fff;
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -322,11 +323,11 @@ body .row{
   font-family: verdana;
   font-size: 12px;
   font-weight: 200;
-  background-color: #2e353d;
+  background-color: rgba(46, 53, 61, 0.85);
   position: fixed;
-  top: 0px;
+  top: 42px;
   width: 300px;
-  height: 100%;
+  height: 87%;
   color: #e1ffff;
 }
 .nav-side-menu .brand {
@@ -427,11 +428,66 @@ body .row{
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
-@media (max-width: 767px) {
+.dash_covered{
+	background-image:url(https://static.pexels.com/photos/8395/lights-night-unsharp-blured.jpg);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -111;
+	background-size: cover;
+    background-position: 100% center;
+}
+.table_wrapper{
+	    background-color: rgba(255, 255, 255, 0.95);
+    padding: 26px 25px 10px 25px;
+}
+.table_wrapper table{color:#000;}
+.table-fixed thead {
+  width: 98.6%;
+    background-color: #525252;
+    overflow: auto;
+  
+    color: #fff;
+}
+
+.table-fixed tbody {
+  height: 550px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
+.content{
+	    padding-left: 300px;
+}
+.action_wrap{padding:0px;display:-webkit-inline-box;margin-bottom:0px;}
+.action_wrap li{list-style-type:none;}
+.action_wrap li a{padding:0px 20px; color:red;}
+.action_wrap li a:hover, .action_wrap li a:focus{text-decoration:none;}
+.panel_wrap{    border: 1px solid #fff;
+    padding: 22px 7px 0px 7px;
+    background-color: rgba(255, 255, 255, 0.59);
+    box-shadow: 0px 0px 9px 0px #fff;}
+.edit_remove_marker{    position: absolute;
+    top: 45px;
+    right: 10%;}
+@media (max-width: 1024px) {
+	.nav-side-menu{height:100%;}
+	.table-fixed tbody {
+	height: 300px;}
+}
+	@media (max-width: 767px) {
+	
   .nav-side-menu {
     position: relative;
     width: 100%;
     margin-bottom: 10px;
+	padding-top: 46px;
   }
   .nav-side-menu .toggle-btn {
     display: block;
@@ -452,11 +508,15 @@ body .row{
     padding-left: 20px;
     line-height: 50px !important;
   }
+   .content {
+    padding-left: 0px;
+}
 }
 @media (min-width: 767px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
+ 
 }
 body {
   margin: 0px;
