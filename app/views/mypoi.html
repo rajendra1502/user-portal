@@ -1,32 +1,33 @@
-<div class=" toppad" >
-	<div class="content_wrap_area">
-		<div class="table_wrapper" ng-init="userPoi();">
-			<table class="table table-fixed  table-bordered table-striped">
-				<thead>
-					<tr>
-						<th  class="col-xs-3">POi Name</th>
-						<th  class="col-xs-3">Lat</th>
-						<th  class="col-xs-3">Lng</th>
-						<th  class="col-xs-3">Actions</th>
-					</tr>
-				</thead>
-                                
-                                <tbody>
-					<tr ng-repeat="poi in userPoiList">
-						<td class="col-xs-3">{{poi.poiName}}</td>
-                                                <td class="col-xs-3">{{poi.poiLat}}</td>
-                                                <td class="col-xs-3">{{poi.poiLng}}</td><td class="col-xs-3">
-							<ul class="action_wrap">
-								<li><a href ng-click="editPoi($index, poi.id)"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-								<li><a href ng-click="deletePoi($index, poi.id)"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-							</ul>
-						</td>
-					</tr>
-				
-				</tbody>
-			</table>
-			
-		</div>
-	</div>
-	
+<div class="toppad12">
+    <div class="content_wrap_area">
+        <div class="table_wrapper" ng-init="userPoi();">
+            <table class="table table-fixed  table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th  class="col-xs-3 text-center">POI Name</th>
+                        <th  class="col-xs-3 text-center">Latitude</th>
+                        <th  class="col-xs-3 text-center">Longitude</th>
+                        <th  class="col-xs-3 text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="poi in userPoiList">
+                        <td class="col-xs-3 text-center">{{poi.poiName}}</td>
+                        <td class="col-xs-3 text-center">{{poi.poiLat}}</td>
+                        <td class="col-xs-3 text-center">{{poi.poiLng}}</td>
+                        <td class="col-xs-3 text-center">
+                            <ul class="action_wrap">
+                                <li><a href ng-click="editPoi($index, poi.id)"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
+                                <li><a href ng-click="deletePoi($index, poi.id)"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
 </div>
