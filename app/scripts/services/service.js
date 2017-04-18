@@ -9,6 +9,7 @@
 userPortalApp = angular.module("baasboxAPIservice", []);
 userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootScope', function ($http, $q, $resource, $rootScope) {
         var master = this;
+        this.adminUri = "/admin/"
       
         this.apiFailureCallback = function (error) {
             console.info(error);
@@ -16,6 +17,41 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
                 $rootScope.logout();
                 return false;
             }
+        }
+        // Baasbox direct api access method
+        this.bassBoxDirectAPI = function (URI, method, postData) {
+            var deferred = $q.defer();
+            // Create URL to hit
+            console.info('ser', URI, method, postData);
+            var URL = BASSBOX_HOST + URI;
+            // pass null for postData if we want to run delete API
+
+
+            var options = {
+                method: method,
+                url: URL,
+                cache: false,
+                contentType: 'application/json',
+                crossDomain: true,
+                headers: {
+                    "X-BB-SESSION": $rootScope.currentUserData.token,
+                    'X-BAASBOX-APPCODE': BaasBox.appcode
+                }
+            }
+
+            if (postData != null) {
+                $data = JSON.stringify(postData);
+                options.data = $data;
+            }
+
+            $http(options).success(function (response, status) {
+                
+                return deferred.resolve(response);
+            }).error(function (error, status) {
+                
+                return deferred.resolve(error);
+            });
+            return deferred.promise;
         }
         
         this.signUp = function(email, pass, name, key){
@@ -94,6 +130,30 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
                     })
             return deferred.promise;
         }    
+// Update poi's
+        this.updatePoi = function (o) {
+            var deferred = $q.defer();
+            BaasBox.callPlugin('streetview.Prod_POI', 'put', o)
+                    .done(function (res) {
+                        return deferred.resolve(res);
+                    })
+                    .fail(function (err) {
+                        return deferred.reject(err);
+                    });
+            return deferred.promise;
+        }   
         
+//Edit user detail
+        this.editUser = function (dataObj) {
+            var deferred = $q.defer();
+            BaasBox.callPlugin('streetview.user', 'put', dataObj)
+                    .done(function (result) {
+                        return deferred.resolve(dataObj);
+                    })
+                    .fail(function (error) {
+                        return deferred.resolve(error);
+                    })
+            return deferred.promise;
+        }        
       return this;  
     }]);       

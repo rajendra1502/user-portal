@@ -2,14 +2,40 @@ userPortalApp.controller('poiController', ['$scope', '$location', 'baasboxAPIser
  
  $scope.updatePoi = function(){
   $scope.showMsg = false;     
-  console.info($scope.updateFormPoi); 
-  if($scope.updateFormPoi.$valid){   
-   $scope.showMsg = false;   
-   alert('ttt');    
-  } else {
-   $scope.showMsg = true;   
-   alert('kkk');   
-  }
+   var obj = {
+            "id":$rootScope.editPoiData.id,
+            "poiLng": $rootScope.editPoiData.poiLng,
+            "poiWebsite": '',
+            "poiCategoryID": '',
+            "poiCategory": '',
+            "poiCategoryType": 'POILocation',
+            "poiFavIndex": '',
+            "poiImageID": '',
+            "poiAltitude": $rootScope.editPoiData.poiAltitude,
+            "poiEmail": $rootScope.editPoiData.poiEmail,
+            "poiSceneId": '',
+            "poiSubCategoryID": '',
+            "poiSubcategory": '',
+            "poiDescription": '',
+            "poiAddress": '',
+            "poiDistrict": '',
+            "poiMuncipality": '',
+            "poiPanoDate": '',
+            "poiLat": $rootScope.editPoiData.poiLat,
+            "poiName": $rootScope.editPoiData.poiName,
+            "poiArabicName": $rootScope.editPoiData.poiArabicName,
+            "poiUUID": "",
+            "poiAuthorID": '',
+            "poiPhone": $rootScope.editPoiData.poiPhone,
+            "poiFax" : '',
+            "poiStatus": ""
+        }
+    //  console.info($scope.editPoiData); return;  
+    baasboxAPIservice.updatePoi(obj).then(function (response) {
+       alert('Poi Update successfully!'); 
+       $('#editPoiModel').modal('hide');
+       $scope.userPoi();
+    })    
  }
  
 }]);

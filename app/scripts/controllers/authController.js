@@ -4,13 +4,14 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
   $scope.showMsg = false; 
   $scope.isInvalid = false;
   $scope.formData = {};
-  $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+  $rootScope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 // Login   
   $scope.userSignIn = function(){
   if($scope.signin.$valid){
    baasboxAPIservice.checkAuth($scope.formData.email, $scope.formData.password).then(function (response) {
     console.info('resp',response);   
     if(response.http_code !== 401){
+    $rootScope.currentUserData = response;    
     localStorage.setItem("logged_in_status", true);
     $rootScope.loggedInUser = true;
     $rootScope.userEmail = response.username;
@@ -29,7 +30,7 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
     }  
    })
   }else{  
-   $scope.showMsg = true;   
+   $lscope.showMsg = true;   
    console.info('Not validate');    
   } 
   }
@@ -54,6 +55,5 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
     baasboxAPIservice.checkApiKey().then(function(response){
        console.info('dd',response);
        })
- }   
-    
+ }     
 });

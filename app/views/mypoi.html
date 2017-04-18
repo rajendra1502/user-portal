@@ -30,4 +30,85 @@
         </div>
     </div>
 
+
+<div class=" toppad" >
+	<div class="content_wrap_area">
+		<div class="table_wrapper" ng-init="userPoi();">
+			<table class="table table-fixed  table-bordered table-striped">
+				<thead>
+					<tr>
+						<th  class="col-xs-3">POi Name</th>
+						<th  class="col-xs-3">Lat</th>
+						<th  class="col-xs-3">Lng</th>
+						<th  class="col-xs-3">Actions</th>
+					</tr>
+				</thead>
+                                
+                                <tbody>
+					<tr ng-repeat="poi in userPoiList">
+						<td class="col-xs-3">{{poi.poiName}}</td>
+                                                <td class="col-xs-3">{{poi.poiLat}}</td>
+                                                <td class="col-xs-3">{{poi.poiLng}}</td><td class="col-xs-3">
+							<ul class="action_wrap">
+								<li><a href ng-click="editPoi($index, poi.id)"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
+								<li><a href ng-click="deletePoi($index, poi.id)"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
+							</ul>
+						</td>
+					</tr>
+				
+				</tbody>
+			</table>
+			
+		</div>
+        </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editPoiModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog classifierdialog" role="document">
+        <div class="modal-content">  
+        <form class="cropperForm form" name="updateFormPoi" role="form" ng-submit="updateFormPoi.$valid && updatePoi();" novalidate>    
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Poi </h4>
+            </div>  
+            <div class="modal-body">
+                <div class='row'>
+                    <div class="col-xs-12">
+                        <label class="required_lable">Name (English)</label>
+                        <div class="form-group">                                      
+                            <input type="text" class="form-control" name="firstName" ng-model='editPoiData.poiName' required>
+                        </div>
+                        <p><span ng-show="updateFormPoi.firstName.$error.required">Enter Poi name</span></p> 
+                    </div>  
+                    <div class="col-xs-12">
+                        <label class="required_lable">Name (Arabic)</label>
+                        <div class="form-group">                                      
+                            <input type="text" class="form-control " ng-model='editPoiData.poiArabicName'>
+                        </div>
+                    </div>  
+                    <div class="col-xs-12">
+                        <label class="required_lable">Email </label>
+                        <div class="form-group">                                      
+                            <input type="text" class="form-control" name="email" ng-model='editPoiData.poiEmail' ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+                        </div>
+                        <p><span ng-show="updateFormPoi.email.$error.pattern">Enter valid email!</span></p>  
+                    </div>  
+                    <div class="col-xs-12">
+                        <label class="required_lable">Phone </label>
+                        <div class="form-group">                                      
+                            <input type="text" class="form-control" name="phone" ng-model='editPoiData.poiPhone'>
+                        </div>
+                    </div>  
+                    <div class="modal-footer">
+                    <input type="submit" class="btn btn-success"  ng-disabled="" value="Update Category">
+                </div>
+
+                </div>  
+            </div>
+        </form>   
+        </div>
+    </div>
+
 </div>
