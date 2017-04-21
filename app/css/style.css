@@ -136,6 +136,11 @@ button.btn-block[type="submit"]{
 .navbar-right { 
     margin-right: -25px;
 }
+.linkDisabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: grey;
+}
 @media (max-width: 1024px) {
     .nav-side-menu{height:100%}
     .table-fixed tbody{height:300px}

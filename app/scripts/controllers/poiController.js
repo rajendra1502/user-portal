@@ -1,7 +1,8 @@
 userPortalApp.controller('poiController', ['$scope', '$location', 'baasboxAPIservice', '$q', '$rootScope','$state', '$stateParams', function ($scope, $location, baasboxAPIservice, $q, $rootScope, $state, $stateParams) {
  
  $scope.updatePoi = function(){
-  $scope.showMsg = false;     
+  $scope.showMsg = false;  
+  $scope.isloader = true; 
    var obj = {
             "id":$rootScope.editPoiData.id,
             "poiLng": $rootScope.editPoiData.poiLng,
@@ -32,7 +33,12 @@ userPortalApp.controller('poiController', ['$scope', '$location', 'baasboxAPIser
         }
     //  console.info($scope.editPoiData); return;  
     baasboxAPIservice.updatePoi(obj).then(function (response) {
-       alert('Poi Update successfully!'); 
+       notif({
+          msg: ('Poi update successfully!'),
+          type: "success",
+          position: "center"
+        });
+      $scope.isloader = false; 
        $('#editPoiModel').modal('hide');
        $scope.userPoi();
     })    

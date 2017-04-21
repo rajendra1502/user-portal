@@ -4,14 +4,16 @@ userPortalApp.controller('globalController', ['$scope', '$location', 'baasboxAPI
   $rootScope.editPoiData=[];
   $rootScope.currentUserData = null;
   $rootScope.editUserDetail = {};
+  $scope.isloader = false;
   
   if (LOCAL_STORAGE_LOGIN_STATUS){
-    $rootScope.currentUserData = JSON.parse($.cookie(BASSBOX_COOKIE));  
+   // $rootScope.currentUserData = JSON.parse($.cookie(BASSBOX_COOKIE));  
     $rootScope.loggedInUser = true; 
     $rootScope.userEmail = LOCAL_STORAGE_USER_EMAIL;
     $rootScope.isUserRole = LOCAL_STORAGE_ROLE;
     $rootScope.userName = LOCAL_STORAGE_USERNAME;
     $rootScope.apikey = LOCAL_STORAGE_APIKEY;
+    $rootScope.passkey = LOCAL_STORAGE_PASSKEY;
   }   
  // Generate key
   $rootScope.randomString = function(length, chars) {
@@ -55,6 +57,7 @@ $scope.logout = function () {
         });
         
   $scope.deleteKey = function(){
+    $scope.isloader = true;  
     var o = {
                 "username": $rootScope.userEmail,
                 "action" : "removeKey"
@@ -62,19 +65,34 @@ $scope.logout = function () {
     baasboxAPIservice.updateKey(o).then(function(response){
       $rootScope.apikey = 'N/A';
       localStorage.setItem("apiKey", $rootScope.apikey);
+      notif({
+            msg: ('Key deleted successfully!'),
+            type: "success",
+            position: "center"
+           });
+      $scope.isloader = false;
     })
   };       
  
  $scope.generateKey = function(){
+     $scope.isloader = true;
      var key = $rootScope.randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
      var o = {
                 "username": $rootScope.userEmail,
                 "apiKey" : key,
+                "passKey": $rootScope.passkey,
                 "action" : "addKey"
             };
     baasboxAPIservice.updateKey(o).then(function(response){
       $rootScope.apikey = key;
       localStorage.setItem("apiKey", $rootScope.apikey);
+      notif({
+            msg: ('Key generated successfully!'),
+            type: "success",
+            position: "center"
+           });
+      $scope.isloader = false;
+      
     })
  } 
  $scope.userPoi = function(){
@@ -97,11 +115,18 @@ $scope.logout = function () {
                 };
      $scope.userPoiList.splice(index, 1);            
      baasboxAPIservice.deletePoi(content).then(function (response) {
-        console.info(response);
-        alert('POI deleted successfully!');
+        notif({
+          msg: ('POI deleted successfully!'),
+          type: "success",
+          position: "center"
+        });
         })           
     } else {
-      alert('Do not delete!');   
+      notif({
+          msg: ('Try again!'),
+          type: "error",
+          position: "center"
+        });  
     }           
  }
  
@@ -144,6 +169,7 @@ $scope.logout = function () {
  } 
  
  $scope.updateUser = function(){
+  $scope.isloader = true;   
   var o = {
         username: $scope.editUserDetail.fullName,
         email : $rootScope.userEmail,
@@ -151,13 +177,25 @@ $scope.logout = function () {
       }
   $rootScope.userName = o.username;
   baasboxAPIservice.editUser(o).then(function (response) {
-                if (response.result = 'ok') {
-                  $('#editUser').modal('hide');
-                } else {
-                    console.log(response);
-                }
-            });
+    if (response.result = 'ok') {
+        notif({
+          msg: ('User name update successfully!'),
+          type: "success",
+          position: "center"
+        });
+      $scope.isloader = false;  
+      $('#editUser').modal('hide');
+    } else {
+       notif({
+          msg: (response),
+          type: "success",
+          position: "center"
+        });
+      $scope.isloader = false;        
+      console.log(response);
     }
+    });
+  }
     
 // Update new password method
     $scope.submitChangePassword = function () {

@@ -9,7 +9,7 @@
 					<div class="error" ng-if="isInvalid">User email or password is invalid ! </div>
 					<div class="sign-in-htm">
 						<div class="group">
-							<label for="user" class="label">Username</label>
+							<label for="user" class="label">User Email</label>
 							<input id="user" type="email" class="input" name="email" ng-model="formData.email" required="" ng-pattern="emailFormat"/>
 							<p><span ng-show="showMsg && signin.email.$error.required">Enter valid user name</span></p>
 							<p><span ng-show="showMsg && signin.email.$error.pattern">Enter valid email</span></p>

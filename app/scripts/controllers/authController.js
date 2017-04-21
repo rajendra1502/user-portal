@@ -18,9 +18,11 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
     $rootScope.isUserRole = response.roles[0];
     $rootScope.userName = response.visibleByTheUser['full_name'] ? response.visibleByTheUser['full_name'] : 'User';
     $rootScope.apikey = response.visibleByAnonymousUsers['authKey'] ? response.visibleByAnonymousUsers['authKey'] : 'N/A';
+    $rootScope.passkey = response.visibleByAnonymousUsers['passKey'] ? response.visibleByAnonymousUsers['passKey'] : 'N/A';
     localStorage.setItem("userName", $rootScope.userName);
     localStorage.setItem("userEmail", $rootScope.userEmail);
     localStorage.setItem("apiKey", $rootScope.apikey);
+    localStorage.setItem("passKey", $rootScope.passkey);
     localStorage.setItem("role", $rootScope.isUserRole);
     $scope.isInvalid = false;
     $location.path('/dashboard');
@@ -42,7 +44,18 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
        var key = $rootScope.randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
        baasboxAPIservice.signUp($scope.formData.email, $scope.formData.spassword, $scope.formData.userName, key).then(function(response){
         localStorage.setItem("logged_in_status", true);
+        $rootScope.currentUserData = response;  
         $rootScope.loggedInUser = true;
+        $rootScope.userEmail = response.username;
+        $rootScope.isUserRole = response.roles[0];
+        $rootScope.userName = response.visibleByTheUser['full_name'] ? response.visibleByTheUser['full_name'] : 'User';
+        $rootScope.apikey = response.visibleByAnonymousUsers['authKey'] ? response.visibleByAnonymousUsers['authKey'] : 'N/A';
+        $rootScope.passkey = response.visibleByAnonymousUsers['passKey'] ? response.visibleByAnonymousUsers['passKey'] : 'N/A';
+        localStorage.setItem("userName", $rootScope.userName);
+        localStorage.setItem("userEmail", $rootScope.userEmail);
+        localStorage.setItem("apiKey", $rootScope.apikey);
+        localStorage.setItem("passKey", $rootScope.passkey);
+        localStorage.setItem("role", $rootScope.isUserRole);
         $location.path('/dashboard');
        })
    } else {
