@@ -5,6 +5,7 @@ userPortalApp.controller('globalController', ['$scope', '$location', 'baasboxAPI
   $rootScope.currentUserData = null;
   $rootScope.editUserDetail = {};
   $scope.isloader = false;
+  $scope.showMsg = false; 
   
   if (LOCAL_STORAGE_LOGIN_STATUS){
    // $rootScope.currentUserData = JSON.parse($.cookie(BASSBOX_COOKIE));  
@@ -213,5 +214,5 @@ $scope.logout = function () {
                      $('#changePassword').modal('hide');
                     }
                 })
-    }    
-}]);
+    } 
+  }]);

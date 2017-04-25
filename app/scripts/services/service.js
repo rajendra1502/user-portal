@@ -62,7 +62,7 @@ userPortalApp.service("baasboxAPIservice", ['$http', '$q', '$resource', '$rootSc
                         return deferred.resolve(result);
                     })
                     .fail(function (error) {
-                        return deferred.resolve(error);
+                        return deferred.resolve(JSON.parse(error.responseText));
                     })
             return deferred.promise;
        

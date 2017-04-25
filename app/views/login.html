@@ -6,7 +6,6 @@
 			<div class="login-form">
 				<!--Sign In design--> 
 				<form name="signin" novalidate>
-					<div class="error" ng-if="isInvalid">User email or password is invalid ! </div>
 					<div class="sign-in-htm">
 						<div class="group">
 							<label for="user" class="label">User Email</label>
@@ -20,36 +19,39 @@
 							
 							<p><span ng-show="showMsg && !signin.pass.$valid">Password is too short.</span></p>
 						</div>
-						<div class="group">
+                                               <div class="group">
+                                                        <div class="error" ng-if="isInvalid">User email or password is invalid ! </div>
 							<input type="submit" class="button" value="Sign In" ng-click="userSignIn();">
 						</div>
 						
 						<div class="hr"></div>
-						<div class="foot-lnk">
-							<!--<a href ng-click="CheckApiKey()">Check</a>-->
+<!--						<div class="foot-lnk">
+							<a href ng-click="CheckApiKey()">Check</a>
 							<a href ui-sref="dashboard">Forgot Password?</a>
-						</div>
+						</div>-->
 					</div>
 				</form>    
 				<!--Sign up design-->
 				<form name="signup" novalidate>
+                                    
 					<div class="sign-up-htm">
 						<div class="group">
 							<label for="user" class="label">Username</label>
-							<input type="text" class="input" name="username" ng-model="formData.userName" required="" />
-							<p><span ng-show="showMsg && signup.username.$error.required">Enter user name.</span></p>
-						</div>
+                                                        <input type="text" class="input" name="username" ng-model="formData.userName" ng-minlength="6" required=""/>
+							<p><span ng-show="showMsgSignup && signup.username.$error.required">Enter user name.</span></p>
+                                                        <p><span class="error" ng-show="showMsgSignup && signup.username.$error.minlength">Too short!</span></p>
+        					</div>
 						<div class="group">
 							<label for="email" class="label">Email Address </label>
 							<input type="email" class="input" name="email" ng-model="formData.email" required="" ng-pattern="emailFormat"/>
-							<p><span ng-show="showMsg && signup.email.$error.required">Enter valid user name</span></p>
-							<p><span ng-show="showMsg && signup.email.$error.pattern && signup.email.$touched">Enter valid email</span></p>
+							<p><span ng-show="showMsgSignup && signup.email.$error.required">Enter valid user Email</span></p>
+							<p><span ng-show="showMsgSignup && signup.email.$error.pattern && signup.email.$touched">Enter valid email</span></p>
 						</div>
 						<div class="group">
 							<label for="pass" class="label">Password</label>
 							<input type="password" class="input" data-type="password" name="pass" ng-model="formData.spassword" ng-minlength="6" required="" />
-							<p><span ng-show="showMsg && signup.pass.$error.required">Enter password.</span></p>
-							<p><span ng-show="showMsg && !signup.pass.$valid && signup.pass.$touched">Password is too short.</span></p>
+							<p><span ng-show="showMsgSignup && signup.pass.$error.required">Enter password.</span></p>
+							<p><span ng-show="showMsgSignup && !signup.pass.$valid && signup.pass.$touched">Password is too short.</span></p>
 						</div>
 						<div class="group">
 							<label for="cpass" class="label">Repeat Password</label>
@@ -58,7 +60,8 @@
 						</div>
 						
 						<div class="group">
-							<input type="submit" class="button" value="Sign Up" ng-click="userSignUp();">
+                                                     <div class="error" ng-if="signuperror">{{signuperror}}</div>
+                                                     <input type="submit" class="button" value="Sign Up" ng-click="userSignUp();">
 						</div>
 						<div class="hr"></div>
 						<div class="foot-lnk">

@@ -1,8 +1,8 @@
 'use strict';
 userPortalApp.controller('authController', function ($scope, $http, baasboxAPIservice, $location, $rootScope) {
-    
-  $scope.showMsg = false; 
+  
   $scope.isInvalid = false;
+  $scope.showMsgSignup = false;
   $scope.formData = {};
   $rootScope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 // Login   
@@ -32,7 +32,7 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
     }  
    })
   }else{  
-   $lscope.showMsg = true;   
+   $scope.showMsg = true;   
    console.info('Not validate');    
   } 
   }
@@ -40,9 +40,11 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
   
 // Registration
   $scope.userSignUp = function(){
+    console.info('signup');  
    if($scope.signup.$valid){
        var key = $rootScope.randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
        baasboxAPIservice.signUp($scope.formData.email, $scope.formData.spassword, $scope.formData.userName, key).then(function(response){
+        if (response.result != "error") {
         localStorage.setItem("logged_in_status", true);
         $rootScope.currentUserData = response;  
         $rootScope.loggedInUser = true;
@@ -57,9 +59,13 @@ userPortalApp.controller('authController', function ($scope, $http, baasboxAPIse
         localStorage.setItem("passKey", $rootScope.passkey);
         localStorage.setItem("role", $rootScope.isUserRole);
         $location.path('/dashboard');
+       } else {
+        $scope.signuperror = response.message;
+        console.info($scope.signuperror);
+       }
        })
    } else {
-       $scope.showMsg = true; 
+      $scope.showMsgSignup = true;
       console.info('not valid'); 
    }   
   }
